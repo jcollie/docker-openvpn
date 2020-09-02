@@ -1,0 +1,26 @@
+---
+kind: secret
+name: docker_username
+get:
+  path: docker
+  name: username
+---
+kind: secret
+name: docker_password
+get:
+  path: docker
+  name: password
+---
+kind: pipeline
+type: kubernetes
+name: publish
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+      repo: jcollie/openvpn
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      auto_tag: true

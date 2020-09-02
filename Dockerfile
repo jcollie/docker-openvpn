@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:31
+FROM registry.fedoraproject.org/fedora:32
 
 ENV LANG C.UTF-8
 
@@ -6,4 +6,4 @@ RUN dnf -y update && dnf -y install openvpn iproute iputils traceroute && rm -rf
 
 VOLUME /etc/openvpn
 WORKDIR /etc/openvpn
-ENTRYPOINT ["/usr/sbin/openvpn", "--config", "client.ovpn"]
+CMD ["/usr/sbin/openvpn" ]
